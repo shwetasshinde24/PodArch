@@ -1,0 +1,84 @@
+#ifndef _LINUX_POD_H
+#define _LINUX_POD_H
+
+/* File format definition for POD executable*/
+
+/* we need struct timespec */
+#include <linux/time.h>
+
+#define POD_PAGESIZE 4096
+
+/* 64-bit POD base types. */
+typedef __u64	POD_Addr;
+typedef __u16	POD_Half;
+typedef __s16	POD_SHalf;
+typedef __u64	POD_Off;
+typedef __s32	POD_Sword;
+typedef __u32	POD_Word;
+typedef __u64	POD_Xword;
+typedef __s64	POD_Sxword;
+typedef __uint128_t Pod_Dword; /* For 128 bit Crypto Arithmetic*/
+
+/* These constants define the different pod file types for e_type*/
+#define ET_EXEC   2
+
+
+#define EI_NIDENT	16
+
+#define	EI_MAG0		0		/* e_ident[] indexes */
+#define	EI_MAG1		1
+#define	EI_MAG2		2
+#define	EI_MAG3		3
+#define	EI_CLASS	4
+#define	EI_DATA		5
+#define	EI_VERSION	6
+#define	EI_OSABI	7
+#define	EI_PAD		8
+
+#define	ELFMAG0		0x7f		/* EI_MAG */
+#define	ELFMAG1		'P'
+#define	ELFMAG2		'O'
+#define	ELFMAG3		'D'
+#define	ELFMAG		"\177POD"
+#define	SELFMAG		4
+
+/* this is the POD header */
+typedef struct pod_hdr {
+  unsigned char	e_ident[EI_NIDENT];	/* POD "magic number" */
+  //same as ELF_64
+  POD_Half e_type;		/* ET_EXEC */
+  POD_Half e_machine;	/* EM_860 */
+  POD_Word e_version;	/* EV_CURRENT */
+  POD_Addr e_entry;		/* Entry point virtual address */
+  POD_Off e_phoff;		/* Program header table file offset */
+  POD_Off e_shoff;		/* Section header table file offset */
+  POD_Word e_flags;
+  POD_Half e_ehsize;
+  POD_Half e_phentsize;
+  POD_Half e_phnum;
+  POD_Half e_shentsize;
+  POD_Half e_shnum;
+  POD_Half e_shstrndx;
+  /* added for PodArch */
+  /*Pod_Dword e_key;		AES-GCM Key
+  Pod_Dword e_mac;		AES-GCM Encrypted Hash*/
+} pod_hdr;
+
+/* These constants define the permissions on sections in the program header, p_flags. */
+#define PF_R		0x4
+#define PF_W		0x2
+#define PF_X		0x1
+
+/*Program Header*/
+typedef struct pod_phdr {
+  POD_Word p_type;
+  POD_Word p_flags;
+  POD_Off p_offset;		/* Segment file offset */
+  POD_Addr p_vaddr;		/* Segment virtual address */
+  POD_Addr p_paddr;		/* Segment physical address */
+  POD_Xword p_filesz;		/* Segment size in file */
+  POD_Xword p_memsz;		/* Segment size in memory */
+  POD_Xword p_align;		/* Segment alignment, file & memory */
+} pod_Phdr;
+
+#endif /* _LINUX_POD_H */

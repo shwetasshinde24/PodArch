@@ -1,0 +1,111 @@
+/*
+ *  Created on: 10 Oct, 2013
+ *      Author: Shweta
+ *
+ * linux/fs/binfmt_pod.c
+ *
+ * These are the functions used to load pod format executables as used
+ * by PodArch.
+ *
+ */
+
+#include <linux/module.h>
+
+#include <linux/fs.h>
+#include <linux/stat.h>
+#include <linux/sched.h>
+#include <linux/mm.h>
+#include <linux/mman.h>
+#include <linux/errno.h>
+#include <linux/signal.h>
+#include <linux/binfmts.h>
+#include <linux/pod.h>
+#include <linux/string.h>
+#include <linux/file.h>
+#include <linux/fcntl.h>
+#include <linux/ptrace.h>
+#include <linux/slab.h>
+#include <linux/shm.h>
+#include <linux/personality.h>
+#include <linux/init.h>
+
+#include <asm/uaccess.h>
+#include <asm/pgtable.h>
+
+
+#include <linux/elf.h>
+
+static int load_pod_binary(struct linux_binprm * bprm, struct pt_regs * regs);
+static int load_pod_library(struct file *);
+
+/*
+ * If we don't support core dumping, then supply a NULL so we
+ * don't even try.
+ */
+#if 0
+static int pod_core_dump(struct coredump_params *cprm);
+#else
+#define pod_core_dump	NULL
+#endif
+
+static struct linux_binfmt pod_format = {
+	.module		= THIS_MODULE,
+	.load_binary	= load_pod_binary,
+	.load_shlib	= load_pod_library,
+	.core_dump	= pod_core_dump,
+	.min_coredump	= POD_PAGESIZE
+};
+
+/*
+ * create_pod_tables() parses the env- and arg-strings in new user
+ * memory and creates the pointer tables from them, and puts their
+ * addresses on the "stack", returning the new stack pointer value.
+ */
+static void create_pod_tables(struct linux_binprm *bprm)
+{
+}
+
+static int check_pod_header(struct pod_hdr *pod_ex)
+{
+	return 0;
+}
+
+/*
+ * These are the functions used to load POD executables and shared
+ * libraries.  There is no binary dependent code anywhere else.
+ */
+
+static int
+load_pod_binary(struct linux_binprm * bprm, struct pt_regs * regs)
+{
+	printk("BINFMT_POD: Loading file: %s\n", bprm->filename);
+	return 0;
+}
+
+static int load_pod_library(struct file *f)
+{
+/* No lib support in POD yet. */
+	return -ENOEXEC;
+}
+	/* Install the POD loader.
+	 * N.B. We *rely* on the table being the right size with the
+	 * right number of free slots...
+	 */
+
+static int __init init_pod_binfmt(void)
+{
+	printk("PodArch: registering/init pod binary type \n");
+	return register_binfmt(&pod_format);
+}
+
+static void __exit exit_pod_binfmt(void)
+{
+	printk("PodArch: exiting pod binary loader \n");
+	/* Remove the POD loader. */
+	unregister_binfmt(&pod_format);
+}
+
+core_initcall(init_pod_binfmt);
+module_exit(exit_pod_binfmt);
+
+MODULE_LICENSE("GPL");
