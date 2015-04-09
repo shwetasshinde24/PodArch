@@ -1,0 +1,333 @@
+cache:
+  l1_128K:
+    _file: /home/shweta/github/PodArch/qemu/config/l1_cache.conf
+    _params_merged: true
+    base: wb_cache
+    params: {ASSOC: 8, LATENCY: 2, LINE_SIZE: 64, READ_PORTS: 2, SIZE: 128K, WRITE_PORTS: 1}
+  l1_128K_mesi:
+    _file: /home/shweta/github/PodArch/qemu/config/l1_cache.conf
+    _params_merged: true
+    base: mesi_cache
+    params: {ASSOC: 8, LATENCY: 2, LINE_SIZE: 64, READ_PORTS: 2, SIZE: 128K, WRITE_PORTS: 1}
+  l1_128K_moesi:
+    _file: /home/shweta/github/PodArch/qemu/config/moesi.conf
+    _params_merged: true
+    base: moesi_cache
+    params: {ASSOC: 8, LATENCY: 2, LINE_SIZE: 64, READ_PORTS: 2, SIZE: 128K, WRITE_PORTS: 1}
+  l1_128K_wt:
+    _file: /home/shweta/github/PodArch/qemu/config/l1_cache.conf
+    _params_merged: true
+    base: wt_cache
+    params: {ASSOC: 8, LATENCY: 2, LINE_SIZE: 64, READ_PORTS: 2, SIZE: 128K, WRITE_PORTS: 1}
+  l1_256K:
+    _file: /home/shweta/github/PodArch/qemu/config/l1_cache.conf
+    _params_merged: true
+    base: wb_cache
+    params: {ASSOC: 8, LATENCY: 2, LINE_SIZE: 64, READ_PORTS: 2, SIZE: 256K, WRITE_PORTS: 1}
+  l1_32K_I_xeon:
+    _file: /home/shweta/github/PodArch/qemu/config/xeon.conf
+    _params_merged: true
+    base: wb_cache
+    params: {ASSOC: 4, LATENCY: 2, LINE_SIZE: 64, READ_PORTS: 2, SIZE: 32K, WRITE_PORTS: 1}
+  l1_32K_xeon:
+    _file: /home/shweta/github/PodArch/qemu/config/xeon.conf
+    _params_merged: true
+    base: wb_cache
+    params: {ASSOC: 8, LATENCY: 4, LINE_SIZE: 64, READ_PORTS: 2, SIZE: 32K, WRITE_PORTS: 1}
+  l2_1M_mesi:
+    _file: /home/shweta/github/PodArch/qemu/config/l2_cache.conf
+    _params_merged: true
+    base: mesi_cache
+    params: {ASSOC: 8, LATENCY: 5, LINE_SIZE: 64, READ_PORTS: 2, SIZE: 1M, WRITE_PORTS: 2}
+  l2_256K_xeon:
+    _file: /home/shweta/github/PodArch/qemu/config/xeon.conf
+    _params_merged: true
+    base: wb_cache
+    params: {ASSOC: 8, LATENCY: 6, LINE_SIZE: 64, READ_PORTS: 2, SIZE: 256K, WRITE_PORTS: 2}
+  l2_2M:
+    _file: /home/shweta/github/PodArch/qemu/config/l2_cache.conf
+    _params_merged: true
+    base: wb_cache
+    params: {ASSOC: 8, LATENCY: 5, LINE_SIZE: 64, READ_PORTS: 2, SIZE: 2M, WRITE_PORTS: 2}
+  l2_2M_mesi:
+    _file: /home/shweta/github/PodArch/qemu/config/l2_cache.conf
+    _params_merged: true
+    base: mesi_cache
+    params: {ASSOC: 8, LATENCY: 5, LINE_SIZE: 64, READ_PORTS: 2, SIZE: 2M, WRITE_PORTS: 2}
+  l2_2M_moesi:
+    _file: /home/shweta/github/PodArch/qemu/config/moesi.conf
+    _params_merged: true
+    base: moesi_cache
+    params: {ASSOC: 8, LATENCY: 5, LINE_SIZE: 64, READ_PORTS: 2, SIZE: 2M, WRITE_PORTS: 2}
+  l2_2M_wt:
+    _file: /home/shweta/github/PodArch/qemu/config/l2_cache.conf
+    _params_merged: true
+    base: wt_cache
+    params: {ASSOC: 8, LATENCY: 5, LINE_SIZE: 64, READ_PORTS: 2, SIZE: 2M, WRITE_PORTS: 2}
+  l3_12M_xeon_mesi:
+    _file: /home/shweta/github/PodArch/qemu/config/xeon.conf
+    _params_merged: true
+    base: mesi_cache
+    params: {ASSOC: 16, LATENCY: 27, LINE_SIZE: 64, READ_PORTS: 2, SIZE: 12M, WRITE_PORTS: 2}
+  l3_8M:
+    _file: /home/shweta/github/PodArch/qemu/config/moesi.conf
+    _params_merged: true
+    base: wb_cache
+    params: {ASSOC: 8, LATENCY: 8, LINE_SIZE: 64, READ_PORTS: 2, SIZE: 8M, WRITE_PORTS: 2}
+core:
+  atom:
+    _file: /home/shweta/github/PodArch/qemu/config/atom_core.conf
+    _params_merged: true
+    base: atom
+    params: {DISPATCH_Q_SIZE: 16, ISSUE_PER_CYCLE: 2}
+  ooo:
+    _file: /home/shweta/github/PodArch/qemu/config/ooo_core.conf
+    _params_merged: true
+    base: ooo
+    params: {COMMIT_WIDTH: 4, ISSUE_WIDTH: 4}
+  ooo_2:
+    _file: /home/shweta/github/PodArch/qemu/config/ooo_core.conf
+    _params_merged: true
+    base: ooo
+    params: {COMMIT_WIDTH: 4, ISSUE_WIDTH: 6}
+  xeon:
+    _file: /home/shweta/github/PodArch/qemu/config/xeon.conf
+    _params_merged: true
+    base: ooo
+    params: {ALU_FU_COUNT: 6, COMMIT_WIDTH: 4, FPU_FU_COUNT: 6, ISSUE_Q_SIZE: 36,
+      ISSUE_WIDTH: 5, LOAD_FU_COUNT: 1, LOAD_Q_SIZE: 48, ROB_SIZE: 128, STORE_FU_COUNT: 1,
+      STORE_Q_SIZE: 32}
+machine:
+  atom_core:
+    _file: /home/shweta/github/PodArch/qemu/config/default.conf
+    caches:
+    - {insts: $NUMCORES, name_prefix: L1_I_, type: l1_128K}
+    - {insts: $NUMCORES, name_prefix: L1_D_, type: l1_128K}
+    - {insts: 1, name_prefix: L2_, type: l2_2M}
+    cores:
+    - name_prefix: atom_
+      option: {threads: 1}
+      type: atom
+    description: Single Atom Core configuration
+    interconnects:
+    - connections:
+      - {L1_I_$: UPPER, core_$: I}
+      - {L1_D_$: UPPER, core_$: D}
+      - {L1_I_0: LOWER, L2_0: UPPER}
+      - {L1_D_0: LOWER, L2_0: UPPER2}
+      - {L2_0: LOWER, MEM_0: UPPER}
+      type: p2p
+    max_contexts: 1
+    memory:
+    - insts: 1
+      name_prefix: MEM_
+      option: {latency: 50}
+      type: dram_cont
+    min_contexts: 1
+  moesi_private_L2:
+    _file: /home/shweta/github/PodArch/qemu/config/moesi.conf
+    caches:
+    - insts: $NUMCORES
+      name_prefix: L1_I_
+      option: {private: true}
+      type: l1_128K_moesi
+    - insts: $NUMCORES
+      name_prefix: L1_D_
+      option: {private: true}
+      type: l1_128K_moesi
+    - insts: $NUMCORES
+      name_prefix: L2_
+      option: {last_private: true, private: true}
+      type: l2_2M_moesi
+    - insts: 1
+      name_prefix: L3_
+      option: {private: false}
+      type: l3_8M
+    cores:
+    - {name_prefix: ooo_, type: ooo}
+    description: Private L2 Configuration with Bus Interconnect
+    interconnects:
+    - connections:
+      - {L1_I_$: UPPER, core_$: I}
+      - {L1_D_$: UPPER, core_$: D}
+      - {L1_I_$: LOWER, L2_$: UPPER}
+      - {L1_D_$: LOWER, L2_$: UPPER2}
+      - {L3_0: LOWER, MEM_0: UPPER}
+      type: p2p
+    - connections:
+      - {DIR_0: DIRECTORY, L2_*: LOWER, L3_0: UPPER}
+      type: switch
+    memory:
+    - {insts: 1, name_prefix: DIR_, type: global_dir_cont}
+    - insts: 1
+      name_prefix: MEM_
+      option: {latency: 50}
+      type: dram_cont
+    min_contexts: 2
+  ooo_2_th:
+    _file: /home/shweta/github/PodArch/qemu/config/default.conf
+    caches:
+    - insts: $NUMCORES
+      name_prefix: L1_I_
+      option: {private: true}
+      type: l1_128K_mesi
+    - insts: $NUMCORES
+      name_prefix: L1_D_
+      option: {private: true}
+      type: l1_128K_mesi
+    - insts: $NUMCORES
+      name_prefix: L2_
+      option: {last_private: true, private: true}
+      type: l2_2M_mesi
+    cores:
+    - name_prefix: ooo_
+      option: {threads: 2}
+      type: ooo_2
+    description: Out-of-order core with 2 threads
+    interconnects:
+    - connections:
+      - {L1_I_$: UPPER, core_$: I}
+      - {L1_D_$: UPPER, core_$: D}
+      - {L1_I_$: LOWER, L2_$: UPPER}
+      - {L1_D_$: LOWER, L2_$: UPPER2}
+      type: p2p
+    - connections:
+      - {L2_*: LOWER, MEM_0: UPPER}
+      type: split_bus
+    memory:
+    - {insts: 1, name_prefix: MEM_, type: dram_cont}
+    min_contexts: 2
+  private_L2:
+    _file: /home/shweta/github/PodArch/qemu/config/default.conf
+    caches:
+    - insts: $NUMCORES
+      name_prefix: L1_I_
+      option: {private: true}
+      type: l1_128K_mesi
+    - insts: $NUMCORES
+      name_prefix: L1_D_
+      option: {private: true}
+      type: l1_128K_mesi
+    - insts: $NUMCORES
+      name_prefix: L2_
+      option: {last_private: true, private: true}
+      type: l2_2M_mesi
+    cores:
+    - {name_prefix: ooo_, type: ooo}
+    description: Private L2 Configuration with Bus Interconnect
+    interconnects:
+    - connections:
+      - {L1_I_$: UPPER, core_$: I}
+      - {L1_D_$: UPPER, core_$: D}
+      - {L1_I_$: LOWER, L2_$: UPPER}
+      - {L1_D_$: LOWER, L2_$: UPPER2}
+      type: p2p
+    - connections:
+      - {L2_*: LOWER, MEM_0: UPPER}
+      type: split_bus
+    memory:
+    - insts: 1
+      name_prefix: MEM_
+      option: {latency: 50}
+      type: dram_cont
+    min_contexts: 2
+  shared_l2:
+    _file: /home/shweta/github/PodArch/qemu/config/default.conf
+    caches:
+    - insts: $NUMCORES
+      name_prefix: L1_I_
+      option: {last_private: true, private: true}
+      type: l1_128K_mesi
+    - insts: $NUMCORES
+      name_prefix: L1_D_
+      option: {last_private: true, private: true}
+      type: l1_128K_mesi
+    - {insts: 1, name_prefix: L2_, type: l2_2M}
+    cores:
+    - {name_prefix: ooo_, type: ooo}
+    description: Shared L2 Configuration
+    interconnects:
+    - connections:
+      - {L1_I_$: UPPER, core_$: I}
+      - {L1_D_$: UPPER, core_$: D}
+      - {L2_0: LOWER, MEM_0: UPPER}
+      type: p2p
+    - connections:
+      - {L1_D_*: LOWER, L1_I_*: LOWER, L2_0: UPPER}
+      type: split_bus
+    memory:
+    - insts: 1
+      name_prefix: MEM_
+      option: {latency: 50}
+      type: dram_cont
+    min_contexts: 2
+  single_core:
+    _file: /home/shweta/github/PodArch/qemu/config/default.conf
+    caches:
+    - {insts: $NUMCORES, name_prefix: L1_I_, type: l1_128K}
+    - {insts: $NUMCORES, name_prefix: L1_D_, type: l1_128K}
+    - {insts: 1, name_prefix: L2_, type: l2_2M}
+    cores:
+    - name_prefix: ooo_
+      option: {threads: 1}
+      type: ooo
+    description: Single Core configuration
+    interconnects:
+    - connections:
+      - {L1_I_$: UPPER, core_$: I}
+      - {L1_D_$: UPPER, core_$: D}
+      - {L1_I_0: LOWER, L2_0: UPPER}
+      - {L1_D_0: LOWER, L2_0: UPPER2}
+      - {L2_0: LOWER, MEM_0: UPPER}
+      type: p2p
+    max_contexts: 1
+    memory:
+    - insts: 1
+      name_prefix: MEM_
+      option: {latency: 50}
+      type: dram_cont
+    min_contexts: 1
+  xeon_single_core:
+    _file: /home/shweta/github/PodArch/qemu/config/xeon.conf
+    caches:
+    - insts: $NUMCORES
+      name_prefix: L1_I_
+      option: {private: true}
+      type: l1_32K_I_xeon
+    - insts: $NUMCORES
+      name_prefix: L1_D_
+      option: {private: true}
+      type: l1_32K_xeon
+    - insts: 1
+      name_prefix: L2_
+      option: {last_private: true, private: true}
+      type: l2_256K_xeon
+    - {insts: 1, name_prefix: L3_, type: l3_12M_xeon_mesi}
+    cores:
+    - name_prefix: xeon_
+      option: {threads: 1}
+      type: xeon
+    description: Single Core Xeon configuration
+    interconnects:
+    - connections:
+      - {L1_I_$: UPPER, core_$: I}
+      - {L1_D_$: UPPER, core_$: D}
+      - {L1_I_0: LOWER, L2_0: UPPER}
+      - {L1_D_0: LOWER, L2_0: UPPER2}
+      - {L3_0: LOWER, MEM_0: UPPER}
+      type: p2p
+    - connections:
+      - {L2_0: LOWER, L3_0: UPPER}
+      type: split_bus
+    max_contexts: 1
+    memory:
+    - insts: 1
+      name_prefix: MEM_
+      option: {latency: 54}
+      type: dram_cont
+    min_contexts: 1
+memory:
+  dram_cont: {_file: /home/shweta/github/PodArch/qemu/config/default.conf, _params_merged: true,
+    base: simple_dram_cont}
+  global_dir_cont: {_file: /home/shweta/github/PodArch/qemu/config/moesi.conf, _params_merged: true,
+    base: global_dir}
