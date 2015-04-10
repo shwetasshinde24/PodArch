@@ -17,7 +17,7 @@ There are three folders here:
 	You'll need a disk image to run PodArch-QEMU on. Download it from here: https://drive.google.com/open?id=0B-_JHxVSr437dE5rVnprUDl3RjA&authuser=0
 
 
-Compiling:
+Compiling
 ---------
 	Refer to README in each of the above folders.
 
